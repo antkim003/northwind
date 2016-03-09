@@ -28,8 +28,11 @@ app.use(
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/', function(req,res,next) {
+  res.render('index');
+});
 
-app.use('/', require('./routes/routes'));
+app.use('/products', require('./routes/products'));
 
 app.use(function(err, req, res, next) {
   console.error(err);

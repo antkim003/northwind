@@ -34,7 +34,7 @@ productSchema.statics.findOrCreate = function(productObj) {
       } else {
         return product;
       }
-    })
+    });
 };
 
 var Product = mongoose.model('Product', productSchema);
