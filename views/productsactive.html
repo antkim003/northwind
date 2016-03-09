@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  Northwind - products
+{% endblock %}
+
+{% block content %}
+  <div class="margin-top"></div>
+
+  <h1>Actives Only</h1>
+  <div class="container products">
+    <div class="row">
+
+      <form method="POST" action="/products"> 
+          <legend>Products</legend>
+          <div class="row">
+            <input type="text" placeholder="name" name="name" class="col-md-5 col-lg-7 form-control">
+            <button type=submit class="btn btn-primary pull-right col-md-4 col-lg-4">Add a product</button>
+          </div>
+
+          <div class="row">
+            <textarea type="text" class="col-md-12 form-control" placeholder="Description" name="description"></textarea>
+          </div>
+      </form>  
+    </div>
+    {% for product in products %}
+    <div class="row">
+      <div class="col-md-3 col-xs-12">
+        <a href="/products/{{product.name}}">{{product.name}}</a>
+      </div>
+      <div class="col-md-3 col-xs-12">
+        {{product.detail}}
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <div class="form-inline">
+          <div class="form-group">
+            {{ product.stock }}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  
+{% endblock %}

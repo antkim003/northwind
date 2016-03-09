@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  Northwind - products
+{% endblock %}
+
+{% block content %}
+  <div class="margin-top"></div>
+
+  
+  <div class="container products">
+    <legend>Details on {{product.name}}</legend>
+    <div class="row">
+      <div class="col-md-6">
+        {{ product.description }}
+      </div>
+    </div>
+
+    <form method="POST" action="/products"> 
+        <legend>Add a new product</legend>
+        <div class="row">
+          <input type="text" placeholder="name" name="name" class="col-md-5 col-lg-7 form-control">
+          <button type=submit class="btn btn-primary pull-right col-md-4 col-lg-4">Add a product</button>
+        </div>
+
+        <div class="row">
+          <textarea type="text" class="col-md-12 form-control" placeholder="Description" name="description"></textarea>
+        </div>
+    </form>  
+  </div>
+{% endblock %}

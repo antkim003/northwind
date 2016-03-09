@@ -1,0 +1,25 @@
+@import "normalize";
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.margin-top {
+  margin-top: 50px;
+}
+h1, legend {
+  margin: 15px 0;
+}
+
+.products.container {
+  input {
+    padding:7px;
+  }
+  .row {
+    margin: 15px 0;
+  }
+}
+.invisible {
+  display: none;
+}

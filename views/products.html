@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  Northwind - products
+{% endblock %}
+
+{% block content %}
+  <div class="margin-top"></div>
+
+  
+  <div class="container products">
+    <div class="row">
+
+      <form method="POST" action="/products"> 
+          <legend>Products</legend>
+          <div class="row">
+            <input type="text" placeholder="name" name="name" class="col-md-5 col-lg-7 form-control">
+            <button type=submit class="btn btn-primary pull-right col-md-4 col-lg-4">Add a product</button>
+          </div>
+
+          <div class="row">
+            <textarea type="text" class="col-md-12 form-control" placeholder="Description" name="description"></textarea>
+          </div>
+      </form>  
+    </div>
+    {% for product in products %}
+    <div class="row">
+      <div class="col-md-3 col-xs-12">
+        <a href="/products/{{product.name}}">{{product.name}}</a>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <form class="form-inline" method="POST" action="/products/{{product.id}}?_method=put">
+          <div class="form-group">
+            <input class="col-md-6 col-xs-6 form-control" value="{{product.stock}}" name="stock" style="width: 50%"></input>
+            <div class="col-md-6 col-xs-6">
+              <button type="submit" class="btn btn-block">Update # in Stock</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-3 col-xs-12">
+        <form class="col-md-6" method="POST" action="/products/{{product.id}}?_method=delete" >
+          <input class="invisible" name="productid" value="{{product.id}}"></input>
+          <button type="submit" class="btn btn-block btn-danger">Delete</button>
+        </form>
+        
+        <form class="col-md-6" method="POST" action="/products/{{product.id}}?_method=put">
+          <input class="invisible" name="active" value="{{product.active}}"></input>
+          <button type="submit" class="btn btn-block btn-warning">
+            {% if product.active %}
+              deactivate
+            {% else %}
+              activate
+            {% endif %}
+          </button>  
+        </form>
+        
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  
+{% endblock %}
